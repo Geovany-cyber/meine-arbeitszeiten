@@ -1,0 +1,11 @@
+{
+  "name": "Meine Arbeitszeiten",
+  "short_name": "Arbeitszeiten",
+  "description": "Arbeitszeiten erfassen und Monatsberichte erstellen",
+  "lang": "de",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f6fa",
+  "theme_color": "#184a9b"
+}

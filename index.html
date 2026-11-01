@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#184a9b">
+<title>Meine Arbeitszeiten</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#14213d;background:#f5f7fc;font-synthesis:none}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;padding:18px 14px 36px;background:#f5f7fc}main{width:100%;max-width:760px;margin:auto}
+h1{font-size:clamp(22px,5.3vw,30px);letter-spacing:-.6px;margin:0;line-height:1.25}h2{font-size:21px;letter-spacing:-.4px;margin:0 0 16px}h3{font-size:17px;margin:17px 0 9px}p{line-height:1.45}small{color:#687790}
+header.hero{background:linear-gradient(115deg,#203c80,#165bc0 72%,#388dea);color:white;border-radius:18px;padding:20px 18px;display:flex;align-items:center;gap:13px;box-shadow:0 8px 20px #163b7920;margin-bottom:16px}
+.hero-icon{font-size:29px;line-height:1}section,.workplace-panel{background:white;border:1px solid #e0e8f6;border-radius:19px;box-shadow:0 6px 22px #123b7710;margin:13px 0;padding:19px 17px;min-width:0}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:17px;font-weight:750}summary::-webkit-details-marker{display:none}summary:after{content:'›';font-size:28px;color:#2359ad}details[open] summary:after{transform:rotate(90deg)}details p{font-size:13px;color:#66758c;margin:12px 0}
+label{display:block;font-size:13px;font-weight:650;color:#344565;margin-bottom:6px}input,select{font-family:inherit;font-size:16px;color:#13223e;background:#f3f6fc;border:1px solid #cbd8eb;border-radius:12px;padding:10px 12px;min-height:46px;max-width:100%;width:100%;outline-offset:2px}input[type=time],input[type=date]{-webkit-appearance:auto;appearance:auto;min-width:0}button{font-family:inherit;cursor:pointer;border:0;background:#175bca;color:white;border-radius:11px;font-size:14px;font-weight:700;padding:11px 13px;min-height:42px;max-width:100%}button:active{filter:brightness(.9)}.secondary{background:#e6f0ff;color:#174a99}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{min-width:0}.field.full{grid-column:1/-1}.section-heading{display:flex;gap:9px;align-items:center;color:#112e63}.section-heading .sym{color:#1e63c3;font-size:21px}.times{display:grid;grid-template-columns:1fr 1fr;gap:12px}.save{width:100%;margin-top:18px;background:linear-gradient(90deg,#1c65d1,#1353b2);box-shadow:0 4px 10px #1c65d122}.month-nav{display:flex;align-items:center;gap:8px;justify-content:space-between}.month-nav button{background:#e5f0ff;color:#174f9f;font-size:20px;min-width:42px}.month-nav strong{font-size:17px;white-space:nowrap}.month-controls{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end;margin-bottom:15px}.month-controls label{margin-bottom:8px}.report-title{font-size:16px;font-weight:750;color:#234b89;margin:10px 0}.table-wrap{overflow-x:auto;max-width:100%}table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px}th{background:#e5f0ff;color:#183866;font-weight:750}th,td{padding:11px 4px;text-align:left;border-bottom:1px solid #e5eaf2;white-space:nowrap}th:first-child{border-radius:9px 0 0 0}th:last-child{border-radius:0 9px 0 0}th:nth-child(1){width:25%}th:nth-child(2),th:nth-child(3){width:14%}th:nth-child(4){width:15%}th:nth-child(5){width:32%}.actions{white-space:nowrap}.icon-btn{min-height:34px;min-width:35px;padding:4px 8px;font-size:19px;margin:0 3px 0 0;border-radius:9px}.delete-btn{background:#d8333b}.total{background:#e4efff;border-radius:11px;padding:11px 13px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px;font-weight:750}.total span{font-size:14px}.total strong{background:#1557b8;color:white;border-radius:9px;padding:8px 12px;font-size:19px}.actions-bottom{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}.actions-bottom button{flex:1;min-width:160px}.backup-section{margin-top:14px}.backup-section h2{font-size:19px}.backup-section p{font-size:13px;color:#61708a}.backup-section input{font-size:13px}.footer{display:block;text-align:center;margin:20px 5px;font-size:12px;line-height:1.5}
+@media(max-width:430px){body{padding:11px 10px 25px}section,.workplace-panel{padding:15px 12px;border-radius:16px}header.hero{padding:17px 14px}h2{font-size:19px}.month-controls{grid-template-columns:1fr;gap:12px}.month-nav{justify-content:center;gap:15px}table{font-size:11px}th,td{padding:10px 2px}th:nth-child(1){width:26%}th:nth-child(2),th:nth-child(3){width:13%}th:nth-child(4){width:16%}th:nth-child(5){width:32%}.icon-btn{min-width:30px;min-height:33px;font-size:16px;padding:3px 6px;margin-right:2px}.actions-bottom button{min-width:0}.times{gap:9px}}
+@media print{body{padding:0;background:white}header.hero,.workplace-panel,.entry-panel,.controls,.backup-section,.footer,.actions-bottom,.actions,th:last-child,td:last-child{display:none!important}section{border:0;box-shadow:none;padding:0;margin:0}.month-controls{display:none}.report-title{font-size:22px;margin:16px 0}table{font-size:12px;table-layout:auto}th,td{padding:8px 12px}.total{background:white;border-top:1px solid #999}.total strong{background:white;color:black} }
+
+/* DESIGN-V3: iPhone-first, matches approved visual reference */
+:root{color:#14213d;background:#f6f8fd}
+body{background:#f6f8fd;padding:18px 14px 36px}
+main{max-width:740px}
+header.hero{min-height:76px;border-radius:20px;background:linear-gradient(115deg,#1b3c87 0%,#1455ae 68%,#368def 100%);box-shadow:none;margin-bottom:16px}
+.hero-icon{font-size:29px;color:white}
+section,.workplace-panel{border-radius:23px;border:1px solid #d8e5f8;box-shadow:0 5px 18px #1c4c9220;background:white}
+.workplace-panel{background:linear-gradient(120deg,#eaf5ff,#d6e9ff);padding:15px 17px;box-shadow:none}
+.workplace-panel summary{justify-content:flex-start;gap:12px}
+.workplace-panel summary:after{margin-left:auto}
+.manage-icon{font-size:27px;color:#1458b5}
+.manage-copy{display:flex;flex-direction:column;gap:3px;font-size:17px}
+.manage-copy small{font-size:12px;font-weight:450;color:#354c70}
+.entry-panel{padding:16px 20px 20px}
+.compact-row{display:grid;grid-template-columns:38% minmax(0,1fr);align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #dbe5f3}
+.compact-row label{font-size:17px;color:#14213d;font-weight:750;margin:0;display:flex;align-items:center;gap:10px}
+.field-icon{color:#155cb8;font-size:23px;display:inline-block;width:25px;text-align:center;font-weight:700}
+.compact-row select,.compact-row input{min-height:44px;height:44px;padding:7px 11px;border-radius:12px;background:#f1f5fb;font-size:16px;font-weight:650}
+.entry-panel .section-heading{margin:15px 0 10px;font-size:18px;color:#172440}
+.time-line{display:grid;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px;padding:0 7%}
+.time-line label{font-size:16px;color:#152442;font-weight:700;margin:0}
+.time-line input{min-width:0;width:100%;height:46px;min-height:46px;border-radius:13px;background:#eff3f9;text-align:center;font-size:17px;font-weight:700;padding:6px 5px}
+.save{margin-top:19px;min-height:49px;border-radius:12px;font-size:17px}
+.report-panel h2{font-size:22px}
+.month-controls{grid-template-columns:1fr 1fr}
+.month-nav strong{background:#f2f6fc;padding:11px 13px;border-radius:12px}
+.month-nav button{margin:0}
+.report-title{margin-top:10px}
+.table-wrap{border:1px solid #dce6f5;border-radius:13px;overflow:hidden}
+table{font-size:13px}th,td{padding:12px 7px}th{background:#dcecff}
+.icon-btn{font-size:19px;min-width:36px;min-height:36px}
+.total{background:#dbeaff}.total strong{font-size:19px}
+@media(max-width:430px){
+ body{padding:10px 10px 26px}
+ header.hero{min-height:65px;padding:13px 14px;border-radius:16px}
+ header.hero h1{font-size:clamp(20px,5.7vw,26px)}
+ section{padding:15px 12px;border-radius:18px}
+ .workplace-panel{padding:13px 12px;border-radius:16px}
+ .manage-copy{font-size:15px}.manage-copy small{font-size:11px}
+ .entry-panel{padding:10px 13px 17px}
+ .compact-row{grid-template-columns:38% minmax(0,1fr);gap:6px;padding:10px 0}
+ .compact-row label{font-size:14px;gap:5px}
+ .field-icon{width:19px;font-size:18px}
+ .compact-row select,.compact-row input{font-size:15px;min-height:43px;height:43px;padding:5px 6px}
+ .entry-panel .section-heading{font-size:17px}
+ .time-line{padding:0;gap:6px;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr)}
+ .time-line label{font-size:14px}
+ .time-line input{font-size:15px;min-height:43px;height:43px;padding:4px 2px}
+ .month-controls{grid-template-columns:1fr 1fr;gap:8px}
+ .month-controls label{font-size:11px;min-height:29px}
+ .month-nav{gap:3px}.month-nav button{min-width:31px;min-height:38px;padding:5px 7px}
+ .month-nav strong{font-size:13px;padding:11px 5px}
+ .month-controls select{font-size:14px;min-height:39px;padding:7px 5px}
+ .report-panel h2{font-size:20px}
+ .table-wrap{overflow-x:auto}
+ table{font-size:11px;table-layout:fixed}
+ th,td{padding:10px 3px}
+ th:nth-child(1){width:25%}th:nth-child(2),th:nth-child(3){width:14%}th:nth-child(4){width:14%}th:nth-child(5){width:33%}
+ .icon-btn{font-size:16px;min-width:29px;min-height:32px;padding:4px 5px;margin-right:2px}
+ .total{padding:9px}.total span{font-size:13px}.total strong{font-size:16px;padding:7px 10px}
+}
+@media print{.workplace-panel,.entry-panel,header.hero{display:none!important}.table-wrap{overflow:visible}.report-panel{box-shadow:none;border:0}.month-controls{display:none}.total{background:white}}
+</style>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Arbeitszeiten">
+</head>
+<body><main>
+<header class="hero"><span class="hero-icon" aria-hidden="true">▦</span><h1>Meine Arbeitszeiten</h1></header>
+<details class="workplace-panel controls"><summary><span class="manage-icon">▱</span><span class="manage-copy"><strong>Arbeitsstellen verwalten</strong><small>Umbenennen oder neue hinzufügen</small></span></summary><div class="actions-bottom"><button type="button" onclick="arbeitsstelleUmbenennen()">Arbeitsstelle umbenennen</button><button type="button" class="secondary" onclick="arbeitsstelleHinzufuegen()">Neue Arbeitsstelle hinzufügen</button></div></details>
+<section class="entry-panel controls">
+<div class="compact-row"><label for="stelle"><span class="field-icon">▣</span>Arbeitsstelle</label><select id="stelle" onchange="ids('filter').value=this.value;anzeigen()"><option>Kind L</option><option>Kind Ph</option></select></div>
+<div class="compact-row"><label for="datum"><span class="field-icon">▦</span>Datum</label><input id="datum" type="date"></div>
+<h3 class="section-heading"><span class="field-icon">◷</span> Arbeitszeit</h3>
+<div class="time-line"><label for="iv">Von</label><input id="iv" type="time" step="60"><label for="ib">Bis</label><input id="ib" type="time" step="60"></div>
+<button class="save" onclick="speichern()">⊕ &nbsp;Eintrag speichern</button>
+</section>
+<section class="report-panel"><h2 class="section-heading"><span class="sym">▥</span> Monatsübersicht</h2>
+<div class="month-controls controls"><div><label>Monat</label><div class="month-nav"><button type="button" aria-label="Vorheriger Monat" onclick="wechselMonat(-1)">‹</button><strong id="monatAnzeige"></strong><button type="button" aria-label="Nächster Monat" onclick="wechselMonat(1)">›</button></div><input id="monat" type="month" style="display:none"></div><div><label for="filter">Arbeitsstelle für den Bericht</label><select id="filter" onchange="ids('stelle').value=this.value;anzeigen()"><option>Kind L</option><option>Kind Ph</option></select></div></div>
+<h3 class="report-title" id="bericht"></h3>
+<div class="table-wrap"><table><thead><tr><th>Datum</th><th>Von</th><th>Bis</th><th>Std.</th><th class="controls">Aktion</th></tr></thead><tbody id="zeilen"></tbody></table></div>
+<div class="total"><span>∑ &nbsp;Gesamtstunden</span><strong id="summe">0:00</strong></div>
+<div class="actions-bottom controls"><button type="button" onclick="window.print()">▣ &nbsp;Bericht drucken / PDF</button></div>
+</section>
+<section class="backup-section controls"><h2>Datensicherung</h2><p>Alle Arbeitszeiten und Arbeitsstellen als Sicherungsdatei speichern.</p><button type="button" onclick="backupErstellen()">↓ &nbsp;Backup herunterladen</button><p><label for="backupDatei">Backup wiederherstellen</label></p><input id="backupDatei" type="file" accept=".json,application/json" onchange="backupWiederherstellen(this)"></section>
+<small class="footer">Die Daten werden lokal in diesem Browser gespeichert. Regelmäßige Sicherungen sind wichtig.</small>
+</main><script>
+
+const ids=x=>document.getElementById(x);
+let daten=[];
+let editIndex=-1;
+try{daten=JSON.parse(localStorage.getItem('arbeitszeiten_v1')||'[]')}catch(e){daten=[]}
+const heute=new Date();
+const lokal=new Date(heute.getTime()-heute.getTimezoneOffset()*60000).toISOString().slice(0,10);
+ids('datum').value=lokal;
+ids('monat').value=lokal.slice(0,7);
+function minuten(a,b){
+ if(!a||!b)return 0;
+ let [h,m]=a.split(':').map(Number),[j,n]=b.split(':').map(Number);
+ return Math.max(0,j*60+n-h*60-m);
+}
+function zeit(n){return Math.floor(n/60)+':'+String(n%60).padStart(2,'0')}
+function speichern(){
+ const r={stelle:ids('stelle').value,datum:ids('datum').value,iv:ids('iv').value,ib:ids('ib').value};
+ if(!r.datum||!r.iv||!r.ib||minuten(r.iv,r.ib)===0){alert('Bitte gültige Arbeitszeiten eingeben.');return}
+ const vorher=daten.slice();
+ if(editIndex>=0){daten[editIndex]=r}else{daten.push(r)}
+ try{localStorage.setItem('arbeitszeiten_v1',JSON.stringify(daten))}
+ catch(e){daten=vorher;alert('Speichern fehlgeschlagen.');return}
+ editIndex=-1;
+ ids('filter').value=r.stelle;
+ ids('monat').value=r.datum.slice(0,7);
+ anzeigen();
+ alert('Eintrag gespeichert.');
+}
+function loeschen(index){
+ if(!confirm('Diesen Eintrag wirklich löschen?'))return;
+ const vorher=daten.slice();
+ daten.splice(index,1);
+ try{
+  localStorage.setItem('arbeitszeiten_v1',JSON.stringify(daten));
+ }catch(e){
+  daten=vorher;
+  alert('Löschen fehlgeschlagen.');
+  return;
+ }
+ editIndex=-1;
+ anzeigen();
+}
+function bearbeiten(index){
+ const r=daten[index];
+ if(!r)return;
+ editIndex=index;
+ for(let k of ['stelle','datum','iv','ib'])ids(k).value=r[k];
+ window.scrollTo(0,0);
+ alert('Eintrag bearbeiten und anschließend speichern.');
+}
+function wechselMonat(richtung){
+ const [jahr,monat]=ids('monat').value.split('-').map(Number);
+ const d=new Date(jahr,monat-1+richtung,1);
+ ids('monat').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+ anzeigen();
+}
+async function backupWiederherstellen(input){
+ const datei=input.files[0];
+ if(!datei)return;
+ try{
+  const obj=JSON.parse(await datei.text());
+  if(obj.version!==1||!Array.isArray(obj.eintraege)||
+     !obj.eintraege.every(r=>
+       typeof r.stelle==='string'&&r.stelle.trim().length>0&&r.stelle.length<=80&&
+       /^\d{4}-\d{2}-\d{2}$/.test(r.datum)&&
+       ['iv','ib'].every(k=>/^([01]\d|2[0-3]):[0-5]\d$/.test(r[k]))&&
+       minuten(r.iv,r.ib)>0)){
+   throw Error('Ungültiges Backup');
+  }
+  if(!confirm('Alle vorhandenen Einträge durch dieses Backup ersetzen?'))return;
+  const neu=JSON.stringify(obj.eintraege);
+  const namen=Array.isArray(obj.arbeitsstellen)
+   ? obj.arbeitsstellen
+   : [...new Set(['Kind L','Kind Ph',...obj.eintraege.map(r=>r.stelle)])];
+  if(!namen.length||!namen.every(n=>typeof n==='string'&&n.trim()&&n.length<=80)||
+     !obj.eintraege.every(r=>namen.includes(r.stelle))){
+   throw Error('Ungültige Arbeitsstellen');
+  }
+  const altDaten=localStorage.getItem('arbeitszeiten_v1');
+  const altNamen=localStorage.getItem('arbeitsstellen_v1');
+  try{
+   localStorage.setItem('arbeitszeiten_v1',neu);
+   localStorage.setItem('arbeitsstellen_v1',JSON.stringify(namen));
+  }catch(e){
+   if(altDaten===null)localStorage.removeItem('arbeitszeiten_v1');
+   else localStorage.setItem('arbeitszeiten_v1',altDaten);
+   if(altNamen===null)localStorage.removeItem('arbeitsstellen_v1');
+   else localStorage.setItem('arbeitsstellen_v1',altNamen);
+   throw e;
+  }
+  daten=obj.eintraege;
+  editIndex=-1;
+  arbeitsstellenLaden();
+  ids('stelle').value=ids('filter').value;
+  anzeigen();
+  alert('Backup erfolgreich wiederhergestellt.');
+ }catch(e){
+  alert('Wiederherstellung fehlgeschlagen: '+e.message);
+ }finally{
+  input.value='';
+ }
+}
+function backupErstellen(){
+ const inhalt=JSON.stringify({
+  version:1,
+  erstellt:new Date().toISOString(),
+  eintraege:daten,
+  arbeitsstellen:Array.from(ids('stelle').options,o=>o.value)
+ },null,2);
+ const blob=new Blob([inhalt],{type:'application/json'});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');
+ a.href=url;
+ a.download='Arbeitszeiten-Backup-'+new Date().toISOString().slice(0,10)+'.json';
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function arbeitsstelleUmbenennen(){
+ const alt=ids('stelle').value;
+ const eingabe=prompt('Neuer Name für '+alt+':',alt);
+ if(eingabe===null)return;
+ const neu=eingabe.trim();
+ if(!neu||neu.length>80){
+  alert('Bitte einen gültigen Namen eingeben.');
+  return;
+ }
+ if(neu===alt)return;
+ const namen=Array.from(ids('stelle').options,o=>o.value);
+ if(namen.includes(neu)){
+  alert('Diese Arbeitsstelle existiert bereits.');
+  return;
+ }
+ const neueDaten=daten.map(r=>r.stelle===alt?{...r,stelle:neu}:r);
+ try{
+  localStorage.setItem('arbeitszeiten_v1',JSON.stringify(neueDaten));
+ }catch(e){
+  alert('Speichern fehlgeschlagen.');
+  return;
+ }
+ daten=neueDaten;
+ const novosNomes=namen.map(n=>n===alt?neu:n);
+ localStorage.setItem('arbeitsstellen_v1',JSON.stringify(novosNomes));
+ for(const id of ['stelle','filter']){
+  const select=ids(id);
+  for(const option of select.options){
+   if(option.value===alt){
+    option.value=neu;
+    option.textContent=neu;
+   }
+  }
+  select.value=neu;
+ }
+ anzeigen();
+ alert('Arbeitsstelle erfolgreich umbenannt.');
+}
+function arbeitsstelleHinzufuegen(){
+ const eingabe=prompt('Name der neuen Arbeitsstelle:');
+ if(eingabe===null)return;
+ const name=eingabe.trim();
+ if(!name||name.length>80){
+  alert('Bitte einen gültigen Namen eingeben.');return;
+ }
+ const namen=Array.from(ids('stelle').options,o=>o.value);
+ if(namen.includes(name)){
+  alert('Diese Arbeitsstelle existiert bereits.');return;
+ }
+ const neu=[...namen,name];
+ try{
+  localStorage.setItem('arbeitsstellen_v1',JSON.stringify(neu));
+ }catch(e){
+  alert('Speichern fehlgeschlagen.');return;
+ }
+ for(const id of ['stelle','filter']){
+  const option=document.createElement('option');
+  option.value=name;option.textContent=name;
+  ids(id).appendChild(option);
+  ids(id).value=name;
+ }
+ anzeigen();
+ alert('Neue Arbeitsstelle hinzugefügt.');
+}
+function arbeitsstellenLaden(){
+ let namen;
+ try{namen=JSON.parse(localStorage.getItem('arbeitsstellen_v1')||'null')}
+ catch(e){namen=null}
+ if(!Array.isArray(namen))namen=['Kind L','Kind Ph'];
+ for(const r of daten){
+  if(typeof r.stelle==='string'&&!namen.includes(r.stelle))namen.push(r.stelle);
+ }
+ namen=[...new Set(namen.filter(n=>typeof n==='string'&&n.trim()))];
+ if(!namen.length)namen=['Kind L','Kind Ph'];
+ for(const id of ['stelle','filter']){
+  const select=ids(id);
+  select.replaceChildren();
+  for(const name of namen){
+   const option=document.createElement('option');
+   option.value=name;option.textContent=name;
+   select.appendChild(option);
+  }
+ }
+}
+function anzeigen(){
+ let stelle=ids('filter').value,monat=ids('monat').value;
+ let liste=daten.filter(r=>r.stelle===stelle&&r.datum.startsWith(monat)).sort((a,b)=>a.datum.localeCompare(b.datum));
+ const [jahr,monatNr]=monat.split('-');
+ const monate=['Jan.','Feb.','Mär.','Apr.','Mai','Jun.','Jul.','Aug.','Sep.','Okt.','Nov.','Dez.'];
+ const monatsname=monate[Number(monatNr)-1]+jahr.slice(-2);
+ ids('monatAnzeige').textContent=monatsname;
+ ids('bericht').textContent=stelle+' – '+monatsname;
+ ids('zeilen').replaceChildren();
+ let ist=0;
+ for(let r of liste){
+  let index=daten.indexOf(r);
+  let i=minuten(r.iv,r.ib);ist+=i;
+  let tr=document.createElement('tr');
+  for(let v of [r.datum.split('-').reverse().join('.'),r.iv,r.ib,zeit(i)]){
+   let td=document.createElement('td');td.textContent=v;tr.appendChild(td);
+  }
+  let td=document.createElement('td');
+  td.className='controls';
+  let btn=document.createElement('button');
+  btn.textContent='✎';
+  btn.title='Bearbeiten';
+  btn.setAttribute('aria-label','Bearbeiten');
+  btn.onclick=()=>bearbeiten(index);
+  btn.style.cssText+=';width:36px;min-width:36px;padding:8px 0;font-size:18px;';
+  td.appendChild(btn);
+  let del=document.createElement('button');
+  del.textContent='🗑';
+  del.title='Löschen';
+  del.setAttribute('aria-label','Löschen');
+  del.style.background='#b42318';
+  del.style.marginLeft='4px';
+  del.onclick=()=>loeschen(index);
+  del.style.cssText+=';width:36px;min-width:36px;padding:8px 0;font-size:17px;';
+  td.appendChild(del);
+  tr.appendChild(td);
+  ids('zeilen').appendChild(tr);
+ }
+ ids('summe').textContent='Gesamtstunden: '+zeit(ist);
+}
+arbeitsstellenLaden();
+ids('stelle').value=ids('filter').value;
+anzeigen();
+
+</script><script>
+if ('serviceWorker' in navigator && window.isSecureContext) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .catch(err => console.error('Offline-Installation:', err));
+  });
+}
+</script>
+</body></html>
